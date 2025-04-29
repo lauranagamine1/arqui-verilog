@@ -71,8 +71,8 @@ module jk_ff(input clk,     // reloj
   always @(posedge clk) begin
         case ({j, k})
             2'b00: q <= q;         // No cambia, j=0 k=0
-            2'b01: q <= 1'b0;      // Reset j=0, k=1
-            2'b10: q <= 1'b1;      // Set, j=1, k=0
+            2'b01: q <= 0;      // Reset j=0, k=1
+            2'b10: q <= 1;      // Set, j=1, k=0
             2'b11: q <= ~q;        // Toggle, j=1, k=1
         endcase
     end
