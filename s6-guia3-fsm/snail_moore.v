@@ -41,14 +41,40 @@ end
 // Lógica de transición de estados (next state logic)
 always @(*) begin
     case (state)
-        S0: nextstate = (number) ? S1 : S0;
-        S1: nextstate = (number) ? S2 : S2;
-        S2: nextstate = (number) ? S2 : S3;
-        S3: nextstate = (number) ? S4 : S4;
-        S4: nextstate = (number) ? S2 : S0;
+        S0: begin
+            if (number)
+                nextstate = S1;
+            else
+                nextstate = S0;
+        end
+        S1: begin
+            if (number)
+                nextstate = S2;
+            else
+                nextstate = S2; 
+        end
+        S2: begin
+            if (number)
+                nextstate = S2;
+            else
+                nextstate = S3;
+        end
+        S3: begin
+            if (number)
+                nextstate = S4;
+            else
+                nextstate = S4; 
+        end
+        S4: begin
+            if (number)
+                nextstate = S2;
+            else
+                nextstate = S0;
+        end
         default: nextstate = S0;
     endcase
 end
+
 
 // Lógica de salida (depende solo del estado en una Moore)
 always @(*) begin
@@ -57,7 +83,7 @@ always @(*) begin
         S1: smile = 0;
         S2: smile = 0;
         S3: smile = 0;
-        S4: smile = 1;  // Solo en S4 se activa la salida
+        S4: smile = 1; 
         default: smile = 0;
     endcase
 end
