@@ -23,6 +23,7 @@
 module alu_tb();
     reg [4:0] a,b;
     reg [1:0] bshift;
+    reg select;
     reg [2:0] ALUControl;
     wire [4:0] Result;
     wire [3:0] ALUFlags;
