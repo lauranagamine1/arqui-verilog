@@ -29,7 +29,7 @@ module alu_tb();
     wire [3:0] ALUFlags;
         
     
-    top ut(.a(a), .b(b), .ALUControl(ALUControl), .bshift(bshift), .Result(Result), .ALUFlags(ALUFlags));
+    top ut(.a(a), .b(b), .ALUControl(ALUControl), .bshift(bshift), .select(select), .Result(Result), .ALUFlags(ALUFlags));
     
     initial begin
    
@@ -37,6 +37,7 @@ module alu_tb();
     b=5;
     ALUControl = 3'b000;
     bshift = 1;
+    select = 1;
     
     #10
   
