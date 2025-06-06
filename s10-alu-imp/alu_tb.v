@@ -33,18 +33,21 @@ module alu_tb();
     
     initial begin
    
-    a = 3;
+    a = 4;
     b=5;
-    ALUControl = 3'b000;
-    bshift = 1;
-    select = 1;
+    ALUControl = 3'b001;
+    bshift = 0;
+    select = 0;
     
     #10
   
     
     $finish;
+    end 
+    initial begin
+      $dumpfile("dump.vcd");
+      $dumpvars;
+    end 
     
     
-    
-    end
 endmodule
