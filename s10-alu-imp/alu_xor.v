@@ -39,6 +39,7 @@ module alu_xor(input [4:0] a, b,
     3'b010: Result = a & b;
     3'b011: Result = a | b;
     3'b100: Result = a^b;
+    3'b101: Result = (a[4] == 1'b0) ? a : ~(a - 1);
     
     endcase
     end
