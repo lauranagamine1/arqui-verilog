@@ -27,9 +27,9 @@ module top(input[4:0] a,b,input [2:0] ALUControl, input [1:0] bshift, input sele
     wire [4:0] w3;
     wire [4:0] w4;
     
-    shift_operator_l s(.A(a), .bshift(bshift), .y(w1));
-    shift_operator_r s(.A(a), .bshift(bshift), .y(w2));
-    mux2 s(.a(w1), .b(w2), .s(select), .y(w3));
+    shift_operator_l s1(.A(a), .bshift(bshift), .y(w1));
+    shift_operator_r s2(.A(a), .bshift(bshift), .y(w2));
+    mux2 s3(.a(w1), .b(w2), .s(select), .y(w3));
     alu_xor ut(.a(w3), .b(b), .ALUControl(ALUControl), .Result(Result), .ALUFlags(ALUFlags));
     convertor waza(.resultado(w4), .converted(Result));
     
