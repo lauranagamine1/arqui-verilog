@@ -33,9 +33,9 @@ module alu_tb();
     
     initial begin
    
-    a = 4;
+    a = -4;
     b=5;
-    ALUControl = 3'b001;
+    ALUControl = 3'b101;
     bshift = 0;
     select = 0;
     
