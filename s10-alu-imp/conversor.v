@@ -1,4 +1,4 @@
 `timescale 1ns / 1ps
-module conversor([4:0] input result, [4:0] output converted);
-  assign converted = ~(result - 1);
+module convertor(input [4:0]resultado, output [4:0] converted);
+  assign converted = (resultado[4] == 1'b0) ? resultado : ~(resultado - 1);
 endmodule
