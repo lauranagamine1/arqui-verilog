@@ -21,8 +21,5 @@
 
 
 module shift_operator_r(input [4:0]A,input [1:0] bshift,output [4:0]y);
-assign y = A >> bshift;
-  
-
-  
+	assign y = A >> bshift;
 endmodule
