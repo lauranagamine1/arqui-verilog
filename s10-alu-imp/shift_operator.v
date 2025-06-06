@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module shift_operator(input [4:0]A,input [1:0] bshift,output [4:0]y);
+module shift_operator_l(input [4:0]A,input [1:0] bshift,output [4:0]y);
 assign y = A << bshift;
   
 
