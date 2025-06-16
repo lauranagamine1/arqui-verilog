@@ -1,0 +1,40 @@
+.global _start
+_start:
+	MOV R0, #0x100 //dirección array
+	MOV R1, #4 //size
+	MOV R2, #0 //i
+	MOV R3, R1
+	SUB R3, #1 //size-1
+	
+	CMP R1, #2
+	BLT END
+	
+FORI:
+	CMP R2, R3
+	BGE END
+	MOV R4, R2 //menor
+	ADD R5, R2, #1 //j=i+1
+	
+FORJ:
+	CMP R5, R1
+	BGE SWAP
+	LDR R6, [R0,R5,LSL #2] //array[j]
+	LDR R7, [R0,R4,LSL #2] //array[menor]
+	CMP R6,R7
+	MOVLT R4, R5 //menor = j
+	ADD R5, R5, #1
+	B FORJ
+	
+SWAP:
+	CMP R4, R2
+	BEQ SKIPSWAP
+	LDR R8,[R0,R4,LSL #2] //array[i]
+	LDR R7,[R0,R2,LSL #2]
+	STR R8, [R0,R4,LSL #2] //array[menor]
+	STR R7,[R0,R2,LSL #2] //array[i]
+	
+SKIPSWAP:
+	ADD R2, R2, #1
+	B FORI
+	
+END:
