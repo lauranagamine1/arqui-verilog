@@ -3,38 +3,38 @@ _start:
 	MOV R0, #0x100 //dirección array
 	MOV R1, #4 //size
 	MOV R2, #0 //i
-	MOV R3, R1
-	SUB R3, #1 //size-1
+	SUB R3, R1, #1 //size-1
 	
-	CMP R1, #2
+	CMP R1, #2 //i<2
 	BLT END
 	
 FORI:
-	CMP R2, R3
+	CMP R2, R3 //i<size-1
 	BGE END
-	MOV R4, R2 //menor
+	MOV R4, R2 //menor 
 	ADD R5, R2, #1 //j=i+1
 	
 FORJ:
-	CMP R5, R1
+	CMP R5, R1 //j<size
 	BGE SWAP
 	LDR R6, [R0,R5,LSL #2] //array[j]
 	LDR R7, [R0,R4,LSL #2] //array[menor]
-	CMP R6,R7
+	CMP R6,R7 //array[j]<array[menor]
 	MOVLT R4, R5 //menor = j
-	ADD R5, R5, #1
+	ADD R5, R5, #1 //++j
 	B FORJ
 	
 SWAP:
-	CMP R4, R2
+	CMP R4, R2 //menor = i?
 	BEQ SKIPSWAP
 	LDR R8,[R0,R4,LSL #2] //array[menor] nuevo
 	LDR R7,[R0,R2,LSL #2] //array[i] nuevo
-	STR R8, [R0,R4,LSL #2] 
-	STR R7,[R0,R2,LSL #2] 
+	STR R7, [R0,R4,LSL #2] 
+	STR R8,[R0,R2,LSL #2] 
 	
 SKIPSWAP:
 	ADD R2, R2, #1
 	B FORI
 	
 END:
+	B END
