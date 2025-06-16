@@ -28,10 +28,10 @@ FORJ:
 SWAP:
 	CMP R4, R2
 	BEQ SKIPSWAP
-	LDR R8,[R0,R4,LSL #2] //array[i]
-	LDR R7,[R0,R2,LSL #2]
-	STR R8, [R0,R4,LSL #2] //array[menor]
-	STR R7,[R0,R2,LSL #2] //array[i]
+	LDR R8,[R0,R4,LSL #2] //array[menor] nuevo
+	LDR R7,[R0,R2,LSL #2] //array[i] nuevo
+	STR R8, [R0,R4,LSL #2] 
+	STR R7,[R0,R2,LSL #2] 
 	
 SKIPSWAP:
 	ADD R2, R2, #1
