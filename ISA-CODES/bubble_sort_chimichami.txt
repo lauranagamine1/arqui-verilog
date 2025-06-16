@@ -3,7 +3,6 @@ _start:
 	MOV R0, #0x100 //dirección array
 	MOV R1, #4 //size
 	MOV R2, #0 // i
-	MOV R3, #0 // j
 
 	
 	CMP R1, #2
@@ -12,6 +11,7 @@ _start:
 FORI:
 	CMP R2, R1
 	BGE END
+	MOV R3, #0 // j
 	SUB R4, R1, R2 //size-i
 	SUB R4, R4, #1 //size-i-1
 FORJ:
