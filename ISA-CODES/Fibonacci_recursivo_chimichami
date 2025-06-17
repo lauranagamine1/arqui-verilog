@@ -5,22 +5,23 @@ _start:
 	B END
 	
 FIBO:
-	STR LR, [SP, #-4]!
-	CMP R0, #1
+	STR LR, [SP, #-4]! //realiza un push en el stack
+	CMP R0, #1 //Si es menor a 1, entra al caso base
 	BGE ELSE
-	MOV R0, #0
-	MOV R1, #1
-	ADD R2, R1, R0
-	ADD SP, SP, #4
+//Caso base
+	MOV R0, #0 //n-2
+	MOV R1, #1 //n-1
+	ADD R2, R1, R0 //n = (n-1) + (n-2)
+	ADD SP, SP, #4 //realiza un solo pop al stack
 	MOV PC, LR
 	
 ELSE:
 	SUB R0, R0, #1
 	BL FIBO   
-	MOV R0, R1
-	MOV R1, R2
-	ADD R2, R1, R0
-	LDR LR, [SP], #4 
+	MOV R0, R1 //sube una grada de valor
+	MOV R1, R2 //sube una grada de valor
+	ADD R2, R1, R0 //realiza la suma n = (n-1) + (n-2)
+	LDR LR, [SP], #4 //realiza un pop en el stack
 	MOV PC, LR
 	
 END:
