@@ -1,0 +1,27 @@
+.global _start
+_start:
+	MOV R0, #6
+	BL FIBO
+	B END
+	
+FIBO:
+	STR LR, [SP, #-4]!
+	CMP R0, #1
+	BGE ELSE
+	MOV R0, #0
+	MOV R1, #1
+	ADD R2, R1, R0
+	ADD SP, SP, #4
+	MOV PC, LR
+	
+ELSE:
+	SUB R0, R0, #1
+	BL FIBO   
+	MOV R0, R1
+	MOV R1, R2
+	ADD R2, R1, R0
+	LDR LR, [SP], #4 
+	MOV PC, LR
+	
+END:
+	B END
