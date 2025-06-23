@@ -6,7 +6,7 @@ _start:
 	
 FIBO:
 	STR LR, [SP, #-4]! //realiza un push en el stack
-	CMP R0, #1 //Si es menor a 1, entra al caso base
+	CMP R0, #3 //Si es menor a 3, entra al caso base
 	BGE ELSE
 //Caso base
 	MOV R0, #0 //n-2
