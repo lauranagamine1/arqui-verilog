@@ -1,0 +1,11 @@
+.global _start
+_start:
+	MOV R0, #0x100 // array's address
+	MOV R1, #3 //array size
+	MOV R2, #0 // i
+	MOV R3, R2 //R3 es la posicion del minimo , seteamos el minimo en head
+	LSL R4, R2, #1
+	ADD R5, R4, #2 //right
+	ADD R4, R4, #1 //left
+END:
+	B END
