@@ -1,0 +1,45 @@
+.global _start
+_start:
+	BL Heap3
+	B END
+	
+Heap3:
+	MOV R0, #0x100 //array address
+	MOV R1, #3 //array size
+	MOV R2, #0 //i, head
+	MOV R3, R2 //minimo
+	ADD R4, R2, R2 //2i
+	ADD R4, R4, #1 //2i + 1 left
+	ADD R5, R4, #1 //2i + 2 right
+	
+	//Comparación de size y left
+	CMP   R4, R1
+	BGE END_FUNCTION
+	LDR R6, [R0, R3, LSL #2] //array[minimo]
+	LDR R7, [R0, R4, LSL #2] //array[left]
+	//Comparación  de valores
+	CMP R7, R6
+	MOVLT R3, R4
+	LDR R6, [R0, R3, LSL #2]
+	
+	//Comparación size y right
+	CMP   R5, R1
+	BGE SWAP
+	LDR R8, [R0, R5, LSL #2] //array[right]
+	CMP R8, R6
+	MOVLT R3, R5
+	LDR R6, [R0, R3, LSL #2] //array[minimo]
+	
+	//Comparacion head con min
+	LDR R8, [R0, R2, LSL #2] //array[head]
+	CMP R6, R8
+	BE END_FUNCTION
+	
+SWAP:
+	STR R8, [R0, R3, LSL #2]
+	STR R6, [R0, R2, LSL #2] //swap
+END_FUNCTION:	
+	MOV PC, LR
+
+END:
+	B END
