@@ -1,24 +1,21 @@
 module clockdivider (
     input  wire        in_clk,
-    input  wire        reset,     // señal de reset opcional
+    input  wire        reset,    // reset asíncrono, activo alto
     output reg         out_clk
 );
 
-    parameter DIV_COUNT = 3;  
-    reg [3:0] counter;
-     
-     // reinicio ascinrono
+    // contador de 25 bits (genera un toggle cada vez que desborda)
+    reg [24:0] counter;
+
+    // reset asíncrono + lógica de división
     always @(posedge in_clk or posedge reset) begin
         if (reset) begin
             counter <= 0;
             out_clk <= 0;
-        end
-        else if (counter == DIV_COUNT-1) begin
-            counter <= 0;
-            out_clk <= ~out_clk;
-        end
-        else begin
+        end else begin
             counter <= counter + 1;
+            if (counter == 0)
+                out_clk <= ~out_clk;
         end
     end
 
